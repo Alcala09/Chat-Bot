@@ -4,11 +4,11 @@ class chatbot {
 
   private String[][] allKeywords = // keywords for the chatbot to recognize
   {
-    {"brother", "mother", "father", "sister"}, 
-    {"cat", "dog", "fish", "hamster"}, 
-    {"pizza", "burger", "taco", "salad"},
-    {"soccer", "basketball", "football", "baseball"}, 
-    {"pop", "rock", "hiphop", "country"} 
+    {"brother ", "mother ", "father ", "sister "}, 
+    {"cat ", "dog ", "fish ", "hamster "}, 
+    {"pizza ", "burger ", "taco ", "salad "},
+    {"soccer ", "basketball ", "football ", "baseball "}, 
+    {"pop ", "rock ", "hiphop ", "country "} 
   };
 
   private String[][] allResponses = // responses for the chatbot to give based on keyword
@@ -40,7 +40,7 @@ class chatbot {
   public String detectKeyword(String text)
   {
     String inputText = text.replaceAll("[^a-zA-Z0-9\\s]", ""); // removes special characters & spaces
-
+    inputText += " ";
     for (int i = 0; i < keywordTypes.length; i++) // checks for keyword
     {
       if (containsKeyword(inputText, allKeywords[i]))
