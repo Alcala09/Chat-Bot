@@ -7,7 +7,8 @@ class Main {
     {
       System.out.print("Chat: ");
       String input = reader.nextLine();
-      System.out.println(bot.detectKeyword(input));
+      
+      System.out.println(bot.respondToKeyword(input)); // temporary to detect type of keyword
     }
   }
 }
