@@ -2,11 +2,12 @@ import java.util.Arrays;
 
 class chatbot {
 
-  private String[] keywordTypes = { "family", "pets", "food", "sports", "music", "greeting", "weather", "time",
-      "goodbye" };
+  private String[] needsKeywords = {"I like ", "I need ", "I want "};
+  private String[] needsResponse = {"why do you "};
 
-  private String[] unknownResponse = { "huh?", "I don't know what you mean", "I'm not sure what that is",
-      "I don't understand", "I don't know" };
+  private String[] keywordTypes = { "family", "pets", "food", "sports", "music", "greeting", "weather", "time","goodbye"};
+
+  private String[] unknownResponse = { "huh?", "I don't know what you mean", "I'm not sure what that is", "I don't understand", "I don't know"};
 
   private String[][] allKeywords = // keywords for the chatbot to recognize
       {
@@ -57,26 +58,48 @@ class chatbot {
   {
     String inputText = text.replaceAll("[^a-zA-Z0-9\\s]", ""); // removes special characters & spaces
     inputText += " ";
+    
     for (int i = 0; i < keywordTypes.length; i++) // checks for keyword
     {
-      if (containsKeyword(inputText, allKeywords[i])) {
+      if (containsKeyword(inputText, allKeywords[i])) 
+      {
         return keywordTypes[i];
       }
     }
+      for (int i = 0; i < needsKeywords.length; i++) // checks for Needs keyword
+      {
+        if (containsKeyword(inputText, needsKeywords[i])) 
+        {
+          return "needsResponse " + inputText;
+        }
+      }
     return "none";
   }
 
   public String respondToKeyword(String text) // Finds text response based on keyword detected
   {
     String selectedKeyword = detectKeyword(text);
+
     int index = Arrays.asList(keywordTypes).indexOf(selectedKeyword);
 
-    if (detectKeyword(text).equals("none")) {
+    if (detectKeyword(text).equals("none")) 
+    {
       return unknownResponse[(int) (Math.random() * unknownResponse.length)];
-    } else if (detectKeyword(text).equals("goodbye")) {
+      
+    } 
+    else if (detectKeyword(text).equals("goodbye")) 
+    {
+      System.out.println("goodbye");
       System.exit(0);
       return "null";
-    } else {
+    }
+    else if (detectKeyword(text).contains("needsResponse "))
+    {
+      String response = needsResponse[(int) (Math.random() * needsResponse.length)];
+      response += text.replaceFirst("needsResponse i", "");
+    }
+    else 
+    {
       return allResponses[index][(int) (Math.random() * allResponses[index].length)];
     }
   }
