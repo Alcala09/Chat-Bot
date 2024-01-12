@@ -15,6 +15,30 @@ class chatbot {
           "they", "their", "theyre", "person", "he", "she", "them", "themself"
       },
   };
+
+  private String[][] basicResponse = { // Responses without stating context
+      { // ME RESPONSES
+          "What makes you think that about yourself?", "Why do you see yourself as that?",
+          "Why that particular self-perception?", "Tell me more about yourself.", "What else do you think of yourself?"
+      },
+      { // YOU RESPONSES
+          "Why do you feel this way about me?", "What did I do for you to think that way about me?",
+          "Why do you think that way about me?"
+      },
+      { // IT RESPONSES
+          "Why do you feel that way about it?", "How did it affect you?", "Tell me more about it.",
+          "What else do you think of it?"
+      },
+      { // THEY RESPONSES
+          "How do you feel about them?", "What do you think about them?", "Why do you think that way about them?",
+          "What else do you think of them?"
+      },
+  };
+  private String[][] contextResponse = { // Responses with variable context 
+    {
+      // context here
+    }
+
   private String[] removedWords = { // words removed in input to make it easier to process
       "am", "is", "are", "was", "were", "be", "been", "being", "the"
   };
