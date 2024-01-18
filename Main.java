@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-class Main 
-{
+class Main {
   public static void main(String[] args) 
   {
     String input = "";
@@ -11,12 +10,12 @@ class Main
     System.out.println("What is your name? ");
     String humanName = reader.nextLine();
     chatbot bot = new chatbot(botName);
-        
-    while (bot.checkKeyword(input) != "goodbye ") 
+
+    while (bot.checkKeyword(input) != "goodbye  ")
     {
       // human response
       System.out.print(humanName + ": ");
-      input = (reader.nextLine() + " ");
+      input = (reader.nextLine() + "  ");
       // bot response
       String response = bot.respond(input);
       System.out.println(botName + ": " + response);
