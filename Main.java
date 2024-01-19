@@ -11,11 +11,13 @@ class Main {
     String humanName = reader.nextLine();
     chatbot bot = new chatbot(botName);
 
-    while (bot.checkKeyword(input) != "goodbye  ")
+    while (bot.checkKeyword(input) != "goodbye")
     {
       // human response
       System.out.print(humanName + ": ");
-      input = (reader.nextLine() + "  ");
+      String userInput = reader.nextLine();
+      input = ("  "+userInput+"  ");
+
       // bot response
       String response = bot.respond(input);
       System.out.println(botName + ": " + response);

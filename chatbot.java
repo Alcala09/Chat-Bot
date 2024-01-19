@@ -18,7 +18,7 @@ class chatbot {
           "greeting", "hello ", "hi ", "hey ", "yo ", "sup ", "wassup ", "whatsup "
       },
       { // goodbye keywords
-          "goodbye  ", "bye  ", "cya  ", "see ya  ", "later  ", "adios  ", "goodnight  ", "gn  ", "gnite  "
+          "goodbye", "bye  ", "cya  ", "see ya  ", "later  ", "adios  ", "goodnight  ", "gn  ", "gnite  "
       },
       { // help keywords
           "help", "assist", "assistance", "support"
@@ -28,7 +28,7 @@ class chatbot {
           "cats ", "fish", "birds ", "hamsters ", "snakes ", "lizards "
       },
       { // family keywords
-          "family", "mother", "father", "sister", "brother", "uncle", "aunt", "cousin", "grandma", "grandpa"
+          "family", "mother ", "father ", "sister ", "brother ", "uncle ", "aunt ", "cousin ", "grandma ", "grandpa ", "families ", "mothers ", "fathers ", "sisters ", "brothers ", "uncles ", "aunts ", "cousins ", "grandmas "
       },
       { // food keywords
           "food", "pizza", "hamburger", "hotdog", "taco", "burrito", "salad"
@@ -37,8 +37,7 @@ class chatbot {
           "music", "song", "album", "artist", "genre", "rap ", "pop ", "rock "
       },
       { // sports keywords
-          "sport", "team", "player", "league", "championship", "worldcup", "basketball", "football", "baseball",
-          "hockey", "soccer"
+          "sport", "team", "player", "league", "championship", "worldcup", "basketball", "football", "baseball", "hockey", "soccer"
       },
       { // movies keywords
           "movies", "movie", "film", "director", "actor", "actress", "cinema", "theater", "screening", "performance"
@@ -127,6 +126,13 @@ class chatbot {
       {
         if (preparedInput.contains(keywords[j][k])) 
         {
+          String alteredInput = preparedInput.replaceAll("goodbye", "");
+          alteredInput.replaceAll("[^a-zA-Z]", " ");
+          alteredInput.replaceAll("\\s+","");
+          if (alteredInput.length() > 4) 
+          {
+            return "unknown";
+          }
           return keywords[j][0];
         }
       }
@@ -160,6 +166,16 @@ class chatbot {
     else if (checkKeyword(preparedInput) != "unknown") 
     {
       String keywordType = checkKeyword(preparedInput); // finds keyword type of input
+      if (keywordType == "  goodbye  ")
+      {
+        originalInput.replaceAll("goodbye", "");
+        originalInput.replaceAll("[^a-zA-Z]", " ").replaceAll("\\s+", " ");
+        if (originalInput.length() != 0) 
+        {
+          keywordType = "unknown";
+        }
+          
+      }
       int keywordIndex = findKeywordIndex(keywordType);
       if (keywordIndex != -1) 
       {
